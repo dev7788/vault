@@ -21,35 +21,34 @@ EOSQL
 # EOSQL
 
 # Run all of the sql scripts in specific order to create the schemas, tables, functions, etc.
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault \
--f ./sql/presetup.sql \
--f ./sql/admin/schema.sql \
--f ./sql/admin/functions/analyze_db.sql \
--f ./sql/admin/functions/verify_key.sql \
--f ./sql/admin/functions/verify_trusted.sql \
--f ./sql/admin/tables/trusted_keys.sql \
--f ./sql/api/schema.sql \
--f ./sql/api/functions/aggregate.sql \
--f ./sql/api/functions/change.sql \
--f ./sql/api/functions/prepare.sql \
--f ./sql/api/functions/reset.sql \
--f ./sql/api/functions/version.sql \
--f ./sql/audit/schema.sql \
--f ./sql/audit/tables/aggregate_log.sql \
--f ./sql/audit/tables/change_log.sql \
--f ./sql/concept/schema.sql \
--f ./sql/indicator/schema.sql \
--f ./sql/universal/schema.sql \
--f ./sql/universal/tables/state.sql \
--f ./sql/universal/tables/clinic.sql \
--f ./sql/universal/tables/practitioner.sql \
--f ./sql/universal/tables/patient.sql \
--f ./sql/universal/tables/patient_practitioner.sql \
--f ./sql/universal/tables/attribute.sql \
--f ./sql/universal/tables/entry.sql \
--f ./sql/universal/tables/entry_attribute.sql \
--f ./sql/universal/data/attributes.sql \
--f ./sql/postsetup.sql;
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/presetup.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/admin/schema.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/admin/functions/analyze_db.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/admin/functions/verify_key.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/admin/functions/verify_trusted.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/admin/tables/trusted_keys.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/schema.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/functions/aggregate.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/functions/change.sql 
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/functions/prepare.sql 
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/functions/reset.sql 
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/functions/version.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/audit/schema.sql 
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/audit/tables/aggregate_log.sql 
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/audit/tables/change_log.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/concept/schema.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/indicator/schema.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/schema.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/tables/state.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/tables/clinic.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/tables/practitioner.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/tables/patient.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/tables/patient_practitioner.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/tables/attribute.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/tables/entry.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/tables/entry_attribute.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/data/attributes.sql
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/postsetup.sql
 
 # Insert the trusted key env variable into the admin.trusted_keys table.
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault <<-EOSQL
