@@ -16,9 +16,9 @@ EOSQL
 # Drop the default postgres database. This step is debatable as client applications may default
 # to connect to this database; however, we control the clients so should not be an issue. And
 # then it is just one less object we have to manage.
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault <<-EOSQL
-  DROP DATABASE postgres;
-EOSQL
+# psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault <<-EOSQL
+#   DROP DATABASE postgres;
+# EOSQL
 
 # Run all of the sql scripts in specific order to create the schemas, tables, functions, etc.
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault \
