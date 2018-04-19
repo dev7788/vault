@@ -2,6 +2,7 @@ CREATE TABLE universal.entry
 (
   id bigserial NOT NULL,
   patient_id bigint NOT NULL,
+  entry_type_id int NOT NULL,
   emr_table text NOT NULL,
   emr_id text,
   emr_reference text,
