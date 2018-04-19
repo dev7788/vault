@@ -10,6 +10,8 @@ CREATE TABLE universal.state
   CONSTRAINT state_pkey PRIMARY KEY (id)
 );
 
+ALTER TABLE universal.state OWNER TO adapter;
+
 CREATE INDEX idx_state_record_type_effective_date
   ON universal.state
   USING btree

@@ -10,6 +10,8 @@ CREATE TABLE universal.practitioner
   CONSTRAINT practitioner_pkey PRIMARY KEY (id)
 );
 
+ALTER TABLE universal.practitioner OWNER TO adapter;
+
 CREATE INDEX idx_practitioner_identifier_type_id
   ON universal.practitioner
   USING btree

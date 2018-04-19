@@ -60,3 +60,6 @@
   GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA universal TO adapter;
 
   GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA universal TO adapter;
+
+  --The adapter role needs to own the universal schema to truncate tables/sequences?
+  ALTER SCHEMA universal OWNER TO adapter;

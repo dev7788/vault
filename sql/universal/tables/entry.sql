@@ -11,6 +11,8 @@ CREATE TABLE universal.entry
     ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
+ALTER TABLE universal.entry OWNER TO adapter;
+
 CREATE INDEX idx_entry_emr_table_emr_id_id
   ON universal.entry
   USING btree

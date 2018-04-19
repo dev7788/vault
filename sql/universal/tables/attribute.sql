@@ -4,3 +4,5 @@ CREATE TABLE universal.attribute
   name text,
   CONSTRAINT attribute_pkey PRIMARY KEY (id)
 );
+
+ALTER TABLE universal.attribute OWNER TO adapter;

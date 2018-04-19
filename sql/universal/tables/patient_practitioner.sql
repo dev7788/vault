@@ -14,6 +14,8 @@ CREATE TABLE universal.patient_practitioner
     ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
+ALTER TABLE universal.patient_practitioner OWNER TO adapter;
+
 CREATE INDEX idx_patient_practitioner_practitioner_id
   ON universal.patient_practitioner
   USING btree

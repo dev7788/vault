@@ -22,6 +22,8 @@ CREATE TABLE universal.entry_attribute
     ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
+ALTER TABLE universal.entry_attribute OWNER TO adapter;
+
 CREATE INDEX idx_entry_attribute_attribute_id
   ON universal.entry_attribute
   USING btree

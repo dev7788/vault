@@ -7,3 +7,5 @@ CREATE TABLE universal.clinic
   emr_reference text,
   CONSTRAINT clinic_pkey PRIMARY KEY (id)
 );
+
+ALTER TABLE universal.clinic OWNER TO adapter;

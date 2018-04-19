@@ -10,6 +10,8 @@ CREATE TABLE universal.patient
     ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 
+ALTER TABLE universal.patient OWNER TO adapter;
+
 CREATE UNIQUE INDEX idx_patient_id
   ON universal.patient
   USING btree
