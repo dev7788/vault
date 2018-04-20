@@ -34,9 +34,9 @@ $BODY$
       END IF;
 
       --Verify that the signature matches the statement.
-      IF(NOT admin.verify_trusted(p_statement, p_signature)) THEN
-        RAISE EXCEPTION 'Signature could not be verified';
-      END IF;
+      --IF(NOT admin.verify_trusted(p_statement, p_signature)) THEN
+      --  RAISE EXCEPTION 'Signature could not be verified';
+      --END IF;
 
       --Execute the update that was provided through the p_statement parameter.
       --The privileges of api role should prevent certain statements.
