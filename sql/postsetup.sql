@@ -36,6 +36,10 @@
   --This will be used within indicator/concept functions to actually query clinical data.
   GRANT SELECT ON ALL TABLES IN SCHEMA universal TO api;
 
+
+  --The adapter role needs the ability to create it's own schemas (eg concept & indicator)
+  GRANT CREATE ON DATABASE vault to api;
+
 /*************************************************************************************************/
 /* TALLY PERMISSIONS                                                                             */
 /*************************************************************************************************/
