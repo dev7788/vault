@@ -2,7 +2,7 @@ CREATE TABLE universal.entry_attribute
 (
   id bigserial NOT NULL,
   entry_id bigint NOT NULL,
-  attribute_id numeric(6,3) NOT NULL,
+  attribute_id numeric(6,3),
   code_system text,
   code_value text,
   text_value text,
