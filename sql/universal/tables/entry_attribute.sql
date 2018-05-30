@@ -11,7 +11,7 @@ CREATE TABLE universal.entry_attribute
   numeric_value numeric(18,6),
   emr_id text,
   emr_reference text,
-  emr_effective_date timestamp with time zone,
+  emr_effective_date timestamp without time zone,
   hdc_effective_date timestamp with time zone NOT NULL DEFAULT now(),
   CONSTRAINT entry_attribute_pkey PRIMARY KEY (id),
   CONSTRAINT entry_attribute_entry_id_fkey FOREIGN KEY (entry_id)
