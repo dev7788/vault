@@ -30,6 +30,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/admin/tabl
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/schema.sql
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/functions/aggregate.sql
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/functions/change.sql 
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/functions/logImport.sql 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/functions/prepare.sql 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/functions/reset.sql 
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/api/functions/version.sql
