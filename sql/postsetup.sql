@@ -67,3 +67,9 @@
 
   --The adapter role needs to own the universal schema to truncate tables/sequences?
   ALTER SCHEMA universal OWNER TO adapter;
+
+  --The adapter role needs the ability to lookup objects within the api schema.
+  GRANT USAGE ON SCHEMA api TO adapter;
+
+  --The adapter role needs the ability to execute the logImport function within the api schema.
+  GRANT EXECUTE ON FUNCTION logImport IN SCHEMA api TO adapter;
