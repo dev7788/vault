@@ -72,4 +72,4 @@
   GRANT USAGE ON SCHEMA api TO adapter;
 
   --The adapter role needs the ability to execute the logImport function within the api schema.
-  GRANT EXECUTE ON FUNCTION logImport IN SCHEMA api TO adapter;
+  GRANT EXECUTE ON FUNCTION api.logImport() to adapter;
