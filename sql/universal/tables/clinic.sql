@@ -5,6 +5,7 @@ CREATE TABLE universal.clinic
   hdc_reference text NOT NULL,
   emr_id text,
   emr_reference text,
+  emr text,
   CONSTRAINT clinic_pkey PRIMARY KEY (id)
 );
 

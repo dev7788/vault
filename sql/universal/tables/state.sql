@@ -4,7 +4,7 @@ CREATE TABLE universal.state
   record_type text NOT NULL,
   record_id bigint NOT NULL,
   state text DEFAULT 'active'::text,
-  effective_date timestamp with time zone,
+  effective_date timestamp without time zone,
   emr_id text,
   emr_reference text,
   CONSTRAINT state_pkey PRIMARY KEY (id)
