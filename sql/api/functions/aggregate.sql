@@ -57,8 +57,19 @@ $BODY$
       USING p_clinic, p_provider, p_effective_date;
 
       --Count the items in each array returned from indicator function.
-      v_numerator = array_length(v_numerator_array, 1);
-      v_denominator = array_length(v_denominator_array, 1);
+      -- Note that array_length(array[], 1) == NULL. 
+      v_numerator = 
+      CASE 
+        WHEN v_numerator_array IS NULL 
+        THEN NULL 
+        ELSE COALESCE(array_length(v_numerator_array, 1), 0) 
+      END;
+      v_denominator = 
+      CASE 
+        WHEN v_denominator_array IS NULL 
+        THEN NULL 
+        ELSE COALESCE(array_length(v_denominator_array, 1), 0) 
+      END;
 
       --Insert a row into the aggregate_log table to indicate that the aggregate query was executed successfully.
       INSERT INTO audit.aggregate_log(indicator, clinic, provider, effective_date, username, start_time, finish_time, success, numerator, denominator, error_code, error_message)
