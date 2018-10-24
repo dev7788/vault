@@ -11,6 +11,7 @@ CREATE TABLE audit.aggregate_log
   success boolean not null,
   numerator integer,
   denominator integer,
+  kount integer,
   error_code text,
   error_message text
 );
