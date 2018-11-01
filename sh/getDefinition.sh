@@ -1,5 +1,6 @@
 #!/bin/bash
 
+DB="${DB:-vault}"
 DUMP_PATH="${DUMP_PATH:-/tmp/dump.sql}"
 LIST_PATH="${LIST_PATH:-/tmp/list.txt}"
 DEF_PATH="${DEF_PATH:-/tmp/definition.sql}"
