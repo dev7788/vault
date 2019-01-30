@@ -7,13 +7,14 @@ set -e
 # transfer of data from the EMR to the Vault.
 # Note that the tally/adapter roles are created here rather than in presetup.sql so we can pass
 # through the TALLY_PASSWORD and ADAPTER_PASSWORD env variables.
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d postgres <<-EOSQL
-  CREATE DATABASE vault;
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d postgres <<-EOSQL  
   CREATE DATABASE $DB_NAME;
   CREATE ROLE $DB_ROLE WITH LOGIN ENCRYPTED PASSWORD '$DB_PASSWORD';
   ALTER ROLE $DB_ROLE SUPERUSER;
-  CREATE ROLE tally WITH LOGIN ENCRYPTED PASSWORD '$TALLY_PASSWORD';
-  CREATE ROLE adapter WITH LOGIN ENCRYPTED PASSWORD '$ADAPTER_PASSWORD';
+  
+  CREATE DATABASE vault;
+  CREATE ROLE $TALLY_ROLE WITH LOGIN ENCRYPTED PASSWORD '$TALLY_PASSWORD';
+  CREATE ROLE $ADAPTER_ROLE WITH LOGIN ENCRYPTED PASSWORD '$ADAPTER_PASSWORD';
 EOSQL
 
 # Drop the default postgres database. This step is debatable as client applications may default
@@ -53,7 +54,7 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/tables/entry.sql
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/tables/entry_attribute.sql
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/universal/data/attributes.sql
-psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault -f ./sql/postsetup.sql
+
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d "${DB_NAME}" -f ./sql/management/tables/settings.sql
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d "${DB_NAME}" -f ./sql/management/data/settings.sql
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d "${DB_NAME}" -f ./sql/management/tables/vault.sql
@@ -62,3 +63,6 @@ psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d "${DB_NAME}" -f ./sql/man
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d vault <<-EOSQL
    INSERT INTO admin.trusted_keys (key) VALUES ('$TRUSTED_KEY');
 EOSQL
+
+# Run postSetup.sh
+exec ./postSetup.sh ADAPTER_ROLE="$ADAPTER" TALLY_ROLE="$TALLY_ROLE"
