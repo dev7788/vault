@@ -73,3 +73,5 @@
 
   --The adapter role needs the ability to execute the logImport function within the api schema.
   GRANT EXECUTE ON FUNCTION api.logImport() to adapter;
+
+  CREATE ROLE api;
